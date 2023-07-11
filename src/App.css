@@ -14,6 +14,16 @@ h2 {
   font-family: 'Courgette', cursive;
 }
 
+.queries {
+  height: 70px;
+  margin: 0 auto;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+}
+
 .footer {
   font-family: 'Montserrat', sans-serif;
 }
