@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { Input } from "./components/Input/Input"; 
+import { SearchForm } from "./components/SearchForm/SearchForm"; 
 import { useState } from "react";
 
 function App() {
@@ -13,19 +13,15 @@ function App() {
     console.log(event.target.value);
   }
 
-  const getCharacterByName = () => {
-    //fetch
-    console.log("characterName", characterName)
-  }
-
   const saveHouseName = (event) => {
     setHouse(event.target.value);
     console.log(event.target.value);
   }
 
-  const getCharacterByHouse = () => {
+  const searchForCharacters = () => {
     //fetch
     console.log("house", house);
+    console.log("characterName", characterName);
   }
 
   return (
@@ -34,20 +30,20 @@ function App() {
         <h1>harry potter</h1>
         <h2>characters</h2>
       </header>
-      <section className="queries">
-        <Input 
-          placeholder="name"
+        <SearchForm 
           characterName={characterName}
-          onChange={saveCharacterName}
-          onClick={getCharacterByName}
+          saveCharacterName={saveCharacterName}
+          saveHouseName={saveHouseName}
+          onClick={searchForCharacters}
+          house={house}
         />
-        <Input 
+        {/* <Input 
           placeholder="house"
           house={house}
           onChange={saveHouseName}
           onClick={getCharacterByHouse}
-        />
-      </section>
+        /> */}
+
       <section className="cards"></section>
       <footer className="footer">
         <p>All rights reserved &copy; 2023</p>

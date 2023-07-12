@@ -1,0 +1,57 @@
+.queries {
+    height: 100px;
+    margin: 0 auto;
+    max-width: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+.input {
+    padding: 5px 10px;
+    font-size: 15px;
+    border: none;
+    border-bottom: 1px solid silver;
+    text-align: center;
+    transition: 0.5s;
+}
+
+.input:hover {
+    background-color: silver;
+}
+
+.input:focus {
+    border: none;
+    outline: none;
+    background-color: aquamarine;
+    color: olive;
+    border-bottom: 1px solid grey;
+}
+
+.select {
+    border: none;
+    border-bottom: 1px solid grey;
+    padding: 5px 10px;
+    transition: 0.5s;
+}
+
+.select:hover {
+    cursor: pointer;
+    background-color: silver;
+}
+
+.select:focus {
+    border: none;
+}
+
+.button {
+    padding: 5px 15px;
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
+/* .button:active {
+    
+} */
