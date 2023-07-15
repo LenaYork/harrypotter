@@ -15,7 +15,7 @@ export const SearchForm = ({characterName, house, onClick, saveCharacterName, sa
                 onChange={saveHouseName}
                 className="select"
             >
-                <option value="house" disabled defaultValue hidden>Choose house</option>
+                <option value="house" defaultValue className="disabled-house-option">Choose house</option>
                 <option value="Gryffindor">Gryffindor</option>
                 <option value="Hufflepuff">Hufflepuff</option>
                 <option value="Ravenclaw">Ravenclaw</option>

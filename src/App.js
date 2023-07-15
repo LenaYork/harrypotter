@@ -1,12 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
 import { SearchForm } from "./components/SearchForm/SearchForm"; 
+import { Card } from "./components/Card/Card";
 import { useState } from "react";
 
 function App() {
 
   const [characterName, setCharacterName] = useState("name");
   const [house, setHouse] = useState("house");
+  const [resultTitle, setResultTitle] = useState("");
+  const [charactersArray, setChractersArray] = useState([]);
 
   const saveCharacterName = (event) => {
     setCharacterName(event.target.value);
@@ -22,6 +25,30 @@ function App() {
     //fetch
     console.log("house", house);
     console.log("characterName", characterName);
+    //if there's no name then house search
+    if (characterName === "name" && house !== "house") {
+      console.log("no character!, house search");
+      setResultTitle(`All ${house} characters:`);
+      fetch(`https://hp-api.onrender.com/api/characters/house/${house}`)
+        .then(response => response.json())
+        .then(array => setChractersArray(array))
+    }
+
+    if (characterName !== "name" && house === "house") {
+      //if there's no house then name search
+      console.log("no house! so only name search");
+      setResultTitle(`All characters with the name ${characterName}`);
+      fetch("https://hp-api.onrender.com/api/characters")
+        .then(response => response.json())
+        .then(array => {
+          const filteredArray = array.filter(person => person.name.includes(characterName));
+          setChractersArray(filteredArray);
+        })
+    }
+
+    if (characterName === "name" && house === "house") {
+      setResultTitle("Please write in either a character name or a house name")
+    }
   }
 
   return (
@@ -37,14 +64,26 @@ function App() {
           onClick={searchForCharacters}
           house={house}
         />
-        {/* <Input 
-          placeholder="house"
-          house={house}
-          onChange={saveHouseName}
-          onClick={getCharacterByHouse}
-        /> */}
-
-      <section className="cards"></section>
+      <section className="cards-container">
+        <h3>{resultTitle}</h3>
+        <div className="cards">
+          {charactersArray.map(character => (
+            <Card 
+              key={character.id}
+              img={character.image}
+              name={character.name}
+              house={house}
+              dateOfBirth={character.dateOfBirth}
+              wand={character.wand.core}
+              ancestry={character.ancestry}
+              actor={character.actor}
+            />
+          ))}
+      </div>
+        
+        {/* <Card />
+        <Card /> */}
+      </section>
       <footer className="footer">
         <p>All rights reserved &copy; 2023</p>
       </footer>
