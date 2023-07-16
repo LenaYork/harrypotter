@@ -72,10 +72,12 @@ function App() {
               key={character.id}
               img={character.image}
               name={character.name}
+              species={character.species}
               house={house}
               dateOfBirth={character.dateOfBirth}
               wand={character.wand.core}
               ancestry={character.ancestry}
+              patronus={character.patronus}
               actor={character.actor}
             />
           ))}
