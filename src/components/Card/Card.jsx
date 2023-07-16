@@ -4,7 +4,7 @@ export const Card = ({img, name, species, house, dateOfBirth, wand, ancestry, pa
     const currentCharacterHouse = house === "house" ? "unknown" : house;
     return(
         <div className="card">
-            <img src={img} alt="harry potter pic"/>
+            <img src={img || "no-avatar.png"} alt="harry potter pic"/>
             <h3>{name}</h3>
             <p className="card-subtitle">Species: <span className="important">{species || "unknown"}</span></p>
             <p className="card-subtitle">House: <span className="important">{currentCharacterHouse}</span></p>
