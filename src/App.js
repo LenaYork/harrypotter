@@ -47,7 +47,20 @@ function App() {
     }
 
     if (characterName === "name" && house === "house") {
-      setResultTitle("Please write in either a character name or a house name")
+      setResultTitle("Please write in either a character name or a house name");
+      setChractersArray([]);
+    }
+
+    if (characterName !== "name" && house !== "house") {
+      //if both name and house are chosen
+      console.log("both are chosen!");
+      setResultTitle(`All ${house} characters with the name ${characterName}`);
+      fetch("https://hp-api.onrender.com/api/characters")
+        .then(response => response.json())
+        .then(array => {
+          const filteredArray = array.filter(person => person.name.includes(characterName) &&  person.house === house);
+          setChractersArray(filteredArray);
+        })
     }
   }
 
@@ -73,7 +86,7 @@ function App() {
               img={character.image}
               name={character.name}
               species={character.species}
-              house={house}
+              house={character.house}
               dateOfBirth={character.dateOfBirth}
               wand={character.wand.core}
               ancestry={character.ancestry}
